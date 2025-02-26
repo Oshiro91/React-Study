@@ -9,21 +9,28 @@ function App() {
     const res = await fetch("https://api.adviceslip.com/advice");
     const data = await res.json();
     setadvice(data.slip.advice);
-    setCount((c) => c+1 )
+    setCount((c) => c + 1)
   }
 
-  useEffect(function(){
+  useEffect(function () {
     getAdvice();
-  },[])
+  }, [])
+
+  function Message(props) {
+    return (
+      <p>
+        You have read {props.count} advices
+      </p>
+    )
+
+  }
 
   return (
     <>
       <div>
         <h1>{advice}</h1>
         <button onClick={getAdvice}>Get Advice</button>
-        <p>
-          You have read {count} advices
-        </p>
+        <Message count={count} />
       </div>
     </>
   )
