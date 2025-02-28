@@ -26,11 +26,23 @@ function Pizza(){
 }
 
 function Footer() {
-  return (
-    <footer>
-      <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
-    </footer>
-  )
+  const hour = new Date().getHours();
+  const openHour = 11;
+  const closeHour = 22;
+  if (hour >= openHour && hour <= closeHour) {
+    return (
+      <footer>
+        <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
+      </footer>
+    )
+  } else {
+    return (
+      <footer>
+        <p><b>{new Date().toLocaleTimeString()}</b> Sorry, we are closed.</p>
+      </footer>
+    )
+  }
+
 
 }
 
