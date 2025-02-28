@@ -29,7 +29,8 @@ function Footer() {
   const hour = new Date().getHours();
   const openHour = 11;
   const closeHour = 22;
-  if (hour >= openHour && hour <= closeHour) {
+  const isOpen = hour >= openHour && hour <= closeHour
+  if (isOpen) {
     return (
       <footer>
         <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
