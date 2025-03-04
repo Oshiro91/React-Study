@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import './index.css'
 
 function Header() {
+  const style = {color: 'red', fontSize: "32px", textTransform:"uppercase"}
   return (
-    <h1 style={{color: 'red'}} >Fast React Pizza Co.</h1>
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>    
   )
 }
 
 function Menu() {
   return(
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2><Pizza/>
-    </div>
+    </main>
   )
 }
 
@@ -19,7 +23,7 @@ function Pizza(){
   return(
     <div>
       <img src="/public/images/pizzas/spinaci.jpg" />
-      <h2>Pizza Spinacci</h2>
+      <h3>Pizza Spinacci</h3>
       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
     </div>
   )
@@ -32,13 +36,13 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closeHour
   if (isOpen) {
     return (
-      <footer>
+      <footer className='footer'>
         <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
       </footer>
     )
   } else {
     return (
-      <footer>
+      <footer className='footer'>
         <p><b>{new Date().toLocaleTimeString()}</b> Sorry, we are closed.</p>
       </footer>
     )
@@ -52,7 +56,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="container">
         <Header />
         <Menu/>
         <Footer />
