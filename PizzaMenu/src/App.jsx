@@ -3,31 +3,34 @@ import './App.css'
 import './index.css'
 
 function Header() {
-  const style = {color: 'red', fontSize: "32px", textTransform:"uppercase"}
+  const style = { color: 'red', fontSize: "32px", textTransform: "uppercase" }
   return (
     <header className="header">
       <h1>Fast React Pizza Co.</h1>
-    </header>    
+    </header>
   )
 }
 
 function Menu() {
-  return(
+  return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza name='Pizza Spinaci' ingridients='Tomato, mozarella, spinach, and ricotta cheese' photo='/images/pizzas/spinaci.jpg'/>
-      <Pizza name='Pizza Margherita' ingridients='Tomato, mozarella' photo='/images/pizzas/margherita.jpg'/>
+      <Pizza name='Pizza Spinaci' ingridients='Tomato, mozarella, spinach, and ricotta cheese' photo='/images/pizzas/spinaci.jpg' price={15}/>
+      <Pizza name='Pizza Margherita' ingridients='Tomato, mozarella' photo='/images/pizzas/margherita.jpg' price={10} />
     </main>
   )
 }
 
-function Pizza(props){
+function Pizza(props) {
   console.log(props)
-  return(
-    <div>
+  return (
+    <div className='pizza'>
       <img src={props.photo} />
-      <h3>{props.name}</h3>
-      <p>{props.ingridients}</p>
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingridients}</p>
+        <span>{props.price}</span>
+      </div>
     </div>
   )
 }
@@ -61,7 +64,7 @@ function App() {
     <>
       <div className="container">
         <Header />
-        <Menu/>
+        <Menu />
         <Footer />
       </div>
     </>
