@@ -14,17 +14,20 @@ function Header() {
 function Menu() {
   return(
     <main className="menu">
-      <h2>Our Menu</h2><Pizza/>
+      <h2>Our Menu</h2>
+      <Pizza name='Pizza Spinaci' ingridients='Tomato, mozarella, spinach, and ricotta cheese' photo='/images/pizzas/spinaci.jpg'/>
+      <Pizza name='Pizza Margherita' ingridients='Tomato, mozarella' photo='/images/pizzas/margherita.jpg'/>
     </main>
   )
 }
 
-function Pizza(){
+function Pizza(props){
+  console.log(props)
   return(
     <div>
-      <img src="/public/images/pizzas/spinaci.jpg" />
-      <h3>Pizza Spinacci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+      <img src={props.photo} />
+      <h3>{props.name}</h3>
+      <p>{props.ingridients}</p>
     </div>
   )
 }
