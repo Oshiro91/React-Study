@@ -21,16 +21,19 @@ function Intro() {
 
 function SkillList() {
   return (
-    <div>
-
+    <div className='skill-lists'>
+      <Skill skillName = "MII" emoji = "🤓" backgroundCollor = "lightblue" />
+      <Skill skillName = "UI5" emoji = "👌" backgroundCollor = "green" />
+      <Skill skillName = "CPI" emoji = "👶" backgroundCollor = "red" />
+      <Skill skillName = "JavaScript" emoji = "💪" backgroundCollor = "grey" />
     </div>
   )
 }
 
-function Skill() {
+function Skill(props) {
   return (
-    <div>
-      
+    <div className='skill'>
+      <h3 style={{backgroundColor:props.backgroundCollor}} >{props.skillName} {props.emoji}</h3>
     </div>
   )  
 }
