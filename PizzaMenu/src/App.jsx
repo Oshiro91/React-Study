@@ -2,53 +2,73 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import './index.css'
 
-function Avatar() {
+function Header() {
+  const style = { color: 'red', fontSize: "32px", textTransform: "uppercase" }
   return (
-    <div>
-      <img className='avatar' src="/images/pizzas/profile.jpg" alt="Fernando Oshiro" />
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  )
+}
+
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza name='Pizza Spinaci' ingridients='Tomato, mozarella, spinach, and ricotta cheese' photo='/images/pizzas/spinaci.jpg' price={15}/>
+      <Pizza name='Pizza Margherita' ingridients='Tomato, mozarella' photo='/images/pizzas/margherita.jpg' price={10} />
+    </main>
+  )
+}
+
+function Pizza(props) {
+  console.log(props)
+  return (
+    <div className='pizza'>
+      <img src={props.photo} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingridients}</p>
+        <span>{props.price}</span>
+      </div>
     </div>
   )
 }
 
-function Intro() {
-  return (
-    <div>
-      <h1>Fernando Oshiro</h1>
-      <p>SAP consultant, especialized on MII module and UI5 front-end developer. Recently certified as a Developer integration SAP CPI</p>
-    </div>
-  )
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 11;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour
+  if (isOpen) {
+    return (
+      <footer className='footer'>
+        <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
+      </footer>
+    )
+  } else {
+    return (
+      <footer className='footer'>
+        <p><b>{new Date().toLocaleTimeString()}</b> Sorry, we are closed.</p>
+      </footer>
+    )
+  }
+
+
 }
 
-function SkillList() {
-  return (
-    <div className='skill-lists'>
-      <Skill skillName = "MII" emoji = "🤓" backgroundCollor = "lightblue" />
-      <Skill skillName = "UI5" emoji = "👌" backgroundCollor = "green" />
-      <Skill skillName = "CPI" emoji = "👶" backgroundCollor = "red" />
-      <Skill skillName = "JavaScript" emoji = "💪" backgroundCollor = "grey" />
-    </div>
-  )
-}
-
-function Skill(props) {
-  return (
-    <div className='skill'>
-      <h3 style={{backgroundColor:props.backgroundCollor}} >{props.skillName} {props.emoji}</h3>
-    </div>
-  )  
-}
 
 function App() {
-return(
-  <div className='card'>
-    <Avatar/>
-    <div className='data'>
-      <Intro/>
-      <SkillList/>
-    </div>
-  </div>
-)
-  
+
+  return (
+    <>
+      <div className="container">
+        <Header />
+        <Menu />
+        <Footer />
+      </div>
+    </>
+  )
 }
 
 export default App
