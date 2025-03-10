@@ -14,7 +14,7 @@ body {
   font-family: "Roboto Mono", sans-serif;
   color: #252525;
   font-weight: 400;
-  background-color: #f7f2e9;
+  background-color: #fae89b;
   border-bottom: 1.6rem solid #edc84b;
   min-height: 100vh;
   padding: 3.2rem;
@@ -22,6 +22,7 @@ body {
 }
 
 .container {
+  background-color: #fcf6b8;
   max-width: 80rem;
   margin: 0 auto;
 
