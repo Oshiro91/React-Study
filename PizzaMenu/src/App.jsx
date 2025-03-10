@@ -85,19 +85,20 @@ function Footer() {
   const openHour = 11;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour
-  if (isOpen) {
-    return (
-      <footer className='footer'>
-        <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
-      </footer>
-    )
-  } else {
-    return (
-      <footer className='footer'>
-        <p><b>{new Date().toLocaleTimeString()}</b> Sorry, we are closed.</p>
-      </footer>
-    )
-  }
+    return <footer className='footer'>{isOpen && <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>}</footer>
+  // if (isOpen) {
+  //   return (
+  //     <footer className='footer'>
+  //       <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
+  //     </footer>
+  //   )
+  // } else {
+  //   return (
+  //     <footer className='footer'>
+  //       <p><b>{new Date().toLocaleTimeString()}</b> Sorry, we are closed.</p>
+  //     </footer>
+  //   )
+  // }
 
 
 }
