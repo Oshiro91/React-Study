@@ -61,7 +61,7 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       <ul className='pizzas'>
-        {pizzaData.map(pizza => <Pizza pizzaObj = {pizza} key = {pizza.name}/>)}
+        {pizzaData.map(pizza => <Pizza pizzaObj={pizza} key={pizza.name} />)}
       </ul>
     </main>
   )
@@ -85,22 +85,13 @@ function Footer() {
   const openHour = 11;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour
-    return <footer className='footer'>{isOpen && <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>}</footer>
-  // if (isOpen) {
-  //   return (
-  //     <footer className='footer'>
-  //       <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>
-  //     </footer>
-  //   )
-  // } else {
-  //   return (
-  //     <footer className='footer'>
-  //       <p><b>{new Date().toLocaleTimeString()}</b> Sorry, we are closed.</p>
-  //     </footer>
-  //   )
-  // }
-
-
+  return <footer className='footer'>{isOpen ?
+    (
+      <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>) :
+    (
+      <p><b>{new Date().toLocaleTimeString()}</b> We are currently closed!</p>
+    )}
+  </footer>
 }
 
 
