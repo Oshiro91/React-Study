@@ -87,10 +87,11 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closeHour
   return <footer className='footer'>{isOpen ?
     (
-      <p><b>{new Date().toLocaleTimeString()}</b> We are currently open!</p>) :
+      <p><b>{new Date().toLocaleTimeString()}</b>Wellcome, We are currently open!</p>) :
     (
-      <p><b>{new Date().toLocaleTimeString()}</b> We are currently closed!</p>
+      <p><b>{new Date().toLocaleTimeString()}</b>Sorry!! We are currently closed!</p>
     )}
+    <button className='btn'>Order</button>
   </footer>
 }
 
@@ -109,3 +110,4 @@ function App() {
 }
 
 export default App
+1 
