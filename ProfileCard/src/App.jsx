@@ -6,7 +6,7 @@ const skills = [
   {
     skill: "HTML+CSS",
     level: "intermediate",
-    color: "#2662EA"
+    color: "#ea2626"
   },
   {
     skill: "JavaScript",
@@ -21,17 +21,17 @@ const skills = [
   {
     skill: "SAP MII",
     level: "intermediate",
-    color: "#E84F33"
+    color: "#0400f0"
   },
   {
     skill: "React",
     level: "intermediate",
-    color: "#60DAFB"
+    color: "#89fb60"
   },
   {
     skill: "UI5",
     level: "advanced",
-    color: "#FF3B00"
+    color: "#00bfff"
   }
 ];
 
