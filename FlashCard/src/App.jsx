@@ -12,8 +12,8 @@ function App() {
       </div>
       <p className="message">Hello</p>
       <div className="buttons">
-        <button>Previous</button>
-        <button>Next</button>
+        <button style={{ backgroundColor: '#7950f2', color: '#fff' }}>Previous</button>
+        <button style={{ backgroundColor: '#7950f2', color: '#fff' }}>Next</button>
       </div>
     </div>
   )
