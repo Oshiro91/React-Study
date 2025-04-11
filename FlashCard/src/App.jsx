@@ -9,13 +9,15 @@ const messages = [
 ];
 function App() {
   const [step, setStep] = useState(1);
-  
+
   function handlePrevious() {
-    if (step >= 1) setStep(s => s - 1)
+    if (step > 1) setStep(s => s - 1)
+      else alert("You can't go back")
   }
 
   function handleNext() {
-    if (step <= 3) setStep(s => s + 1)
+    if (step < 3) setStep(s => s + 1)
+      else alert("You can't go next")
   }
 
   
