@@ -33,6 +33,11 @@
   
   .numbers .active {
     background-color: #7950f2;
+    color: #ffffff;
+  }
+
+  .numbers .innactive {
+    background-color: #d01a1a;
     color: #fff;
   }
   
