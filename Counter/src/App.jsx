@@ -1,34 +1,39 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [step, setStep] = useState(1)
+
+  const date = new Date("june 21 2027");
+  date.setDate(date.getDate() + count);
 
   return (
-    <>
+
+    <div>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <button onClick={() => setStep((c) => c - 1)}>-</button>
+        <span>Step: {step}</span>
+        <button onClick={() => setStep((c) => c + 1)}>+</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div>
+        <button onClick={() => setCount((c) => c - step)}>-</button>
+        <span>Count: {count}</span>
+        <button onClick={() => setCount((c) => c + step)}>+</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+
+      <p>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+            ? `${count} days from today is `
+            : `${Math.abs(count)} days ago was `}
+        </span>
+        <span>{date.toDateString()}</span>
       </p>
-    </>
+    </div>
   )
 }
 
