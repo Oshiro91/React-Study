@@ -2,25 +2,45 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
   const [step, setStep] = useState(1)
+  const [isReset, setIsReset] = useState(true)
 
   const date = new Date("june 21 2027");
   date.setDate(date.getDate() + count);
+
+  function handleStep(e) {
+    setStep(Number(e.target.value))
+    setIsReset(false);
+  }
+
+  function handleReset() {
+    setCount(1);
+    setStep(1);
+    setIsReset(true);
+  }
+
+  function handleCountPlus() {
+    setCount((c) => c + step);
+    setIsReset(false);
+  }
+  function handleCountMinus() {
+    setCount((c) => c - step);
+    setIsReset(false);
+  }
 
   return (
 
     <div>
       <div>
-        <button onClick={() => setStep((c) => c - 1)}>-</button>
+        <input type='range' min={1} max={10} onChange={handleStep} value={step}/>
         <span>Step: {step}</span>
-        <button onClick={() => setStep((c) => c + 1)}>+</button>
       </div>
 
       <div>
-        <button onClick={() => setCount((c) => c - step)}>-</button>
-        <span>Count: {count}</span>
-        <button onClick={() => setCount((c) => c + step)}>+</button>
+        <button onClick={handleCountMinus}>-</button>
+        <input type="text" placeholder='1' value={count} />
+        <button onClick={handleCountPlus}>+</button>
       </div>
 
       <p>
@@ -28,11 +48,14 @@ function App() {
           {count === 0
             ? "Today is "
             : count > 0
-            ? `${count} days from today is `
-            : `${Math.abs(count)} days ago was `}
+              ? `${count} days from today is `
+              : `${Math.abs(count)} days ago was `}
         </span>
         <span>{date.toDateString()}</span>
       </p>
+      <div>
+        <button hidden={isReset} onClick={handleReset}>Reset</button>
+      </div>
     </div>
   )
 }
