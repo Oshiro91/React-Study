@@ -6,7 +6,7 @@ function App() {
   const [step, setStep] = useState(1)
   const [isReset, setIsReset] = useState(true)
 
-  const date = new Date("june 21 2027");
+  const date = new Date();
   date.setDate(date.getDate() + count);
 
   function handleStep(e) {
