@@ -26,9 +26,16 @@ body {
   cursor: pointer;
 }
 
-div.selected {
+div.selectedFalse {
   border: 1px solid #e03131;
   background-color: #e03131;
+  color: #fff;
+  font-weight: bold;
+}
+
+div.selectedTrue {
+  border: 1px solid #36bd2a;
+  background-color: #36bd2a;
   color: #fff;
   font-weight: bold;
 }
