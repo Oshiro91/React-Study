@@ -39,7 +39,7 @@ function App() {
 
       <div>
         <button onClick={handleCountMinus}>-</button>
-        <input type="text" placeholder='1' value={count} />
+        <input type="number" placeholder='1' value={count} onChange={e=>setCount(Number(e.target.value))}></input>
         <button onClick={handleCountPlus}>+</button>
       </div>
 
