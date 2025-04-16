@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(0)
   const [step, setStep] = useState(1)
   const [isReset, setIsReset] = useState(true)
 
@@ -15,7 +15,7 @@ function App() {
   }
 
   function handleReset() {
-    setCount(1);
+    setCount(0);
     setStep(1);
     setIsReset(true);
   }
