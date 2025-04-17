@@ -20,8 +20,6 @@ function Form({onAddItems}) {
     e.preventDefault();
     if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
-    console.log(newItem);
-
     onAddItems(newItem);
 
     setDescription("");
@@ -74,11 +72,17 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
   )
 }
 
-function Stats() {
+function Stats({items}) {
+  if (!items.length) return <p className='stats'>Start adding some items to your packing list 🚀</p>
+  const numItems = items.length;
+  const numPacked = items.filter(item => item.packed).length;
+  const percentage = Math.round((numPacked / numItems) * 100);
   return (
     <footer className='stats'>
       <em>
-        💼You have X items on your list, and you already packed X (X%)
+        {percentage ===100? 
+        '🛫Congratulations! You are ready to Travel!🛫' : 
+        `💼You have ${numItems} items on your list, and you already packed ${numPacked} (${percentage}%)`}
       </em>
     </footer>
   )
@@ -106,7 +110,7 @@ function App() {
       <Logo />
       <Form onAddItems={handleAddItems}/>
       <PackingList items={items} onDeleteItem={handleDeleteItem} onToggleItem={handleToggleItem} />
-      <Stats />
+      <Stats items={items} />
     </div>
   )
 }
