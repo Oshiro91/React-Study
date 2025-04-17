@@ -41,20 +41,29 @@ function App() {
   function handleBillChange(e) {
     setBill(Number(e.target.value))
   }
+  function handleMySatisfactionChange(e) {
+    console.log(e.target.value)
+    setMySatisfaction(Number(e.target.value))
+  }
+
+  function handleFriendSatisfactionChange(e) {
+    console.log(e.target.value)
+    setFriendSatisfaction(Number(e.target.value))
+  }
 
   return (
     <div className="App">
       <div>
         <span>How much was the bill?</span>
-        <Input type={'number'} value={bill} onChange={handleBillChange} ></Input>
+        <Input type={'number'} value={bill} onChange={(e)=>handleBillChange(e)} ></Input>
       </div>
       <div>
         <span>How did you like the service?</span>
-        <Select satisfaction={satisfaction} onSelect={() => { }}></Select>
+        <Select satisfaction={satisfaction} onSelect={(e) => handleMySatisfactionChange(e)}></Select>
       </div>
       <div>
         <span>How did your friend like the service?</span>
-        <Select satisfaction={satisfaction} onSelect={() => { }}></Select>
+        <Select satisfaction={satisfaction} onSelect={(e) => handleFriendSatisfactionChange(e)}></Select>
       </div>
       <div>
         <span>You pay ${bill} (${} + ${})</span>
