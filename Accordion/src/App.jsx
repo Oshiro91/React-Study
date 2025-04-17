@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import './index.css'
+import './style.css'
 
 const faqs = [
   {
@@ -20,13 +20,23 @@ const faqs = [
   }
 ];
 
-
-function Accordion({number,title,text}) {
+function Accordion({data}) {
   return (
-    <div className='item'>
+    <div className='accordion'>
+      {data.map((item, index) => (
+        <AccordionItem key={index} number={index + 1} title={item.title} text={item.text} />
+      ))}
+    </div>
+  )
+}
+function AccordionItem({number, title, text}) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className={`item ${expanded ? "open" : ""}`} onClick={()=>setExpanded(!expanded)}>
       <p className='number'>{number}</p>
       <p className='title'>{title}</p>
-      <p className='icon'>{text}</p>
+      <p className='icon' >{expanded ? '-' : '+'}</p> 
+      <div className='content-box'>{expanded ? `${text}`:``}</div>
     </div>
   )
 }
@@ -34,7 +44,7 @@ function App() {
 
   return (
     <div>
-      <Accordion />
+      <Accordion data={faqs} />
     </div>
   )
 }
