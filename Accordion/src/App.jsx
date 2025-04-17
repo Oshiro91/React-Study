@@ -20,33 +20,63 @@ const faqs = [
   }
 ];
 
-function Accordion({data}) {
-  return (
-    <div className='accordion'>
-      {data.map((item, index) => (
-        <AccordionItem key={index} number={index + 1} title={item.title} text={item.text} />
-      ))}
-    </div>
-  )
-}
-function AccordionItem({number, title, text}) {
-  const [expanded, setExpanded] = useState(false);
-  return (
-    <div className={`item ${expanded ? "open" : ""}`} onClick={()=>setExpanded(!expanded)}>
-      <p className='number'>{number}</p>
-      <p className='title'>{title}</p>
-      <p className='icon' >{expanded ? '-' : '+'}</p> 
-      <div className='content-box'>{expanded ? `${text}`:``}</div>
-    </div>
-  )
-}
-function App() {
-
+export default function App() {
   return (
     <div>
       <Accordion data={faqs} />
     </div>
-  )
+  );
 }
 
-export default App
+function Accordion({ data }) {
+  const [curOpen, setCurOpen] = useState(null);
+
+  return (
+    <div className="accordion">
+      {data.map((el, i) => (
+        <AccordionItem
+          curOpen={curOpen}
+          onOpen={setCurOpen}
+          title={el.title}
+          num={i}
+          key={el.title}
+        >
+          {el.text}
+        </AccordionItem>
+      ))}
+
+      <AccordionItem
+        curOpen={curOpen}
+        onOpen={setCurOpen}
+        title="Test 1"
+        num={22}
+        key="test 1"
+      >
+        <p>Allows React developers to:</p>
+        <ul>
+          <li>Break up UI into components</li>
+          <li>Make components reusuable</li>
+          <li>Place state efficiently</li>
+        </ul>
+      </AccordionItem>
+    </div>
+  );
+}
+
+function AccordionItem({ num, title, curOpen, onOpen, children }) {
+  const isOpen = num === curOpen;
+
+  function handleToggle() {
+    onOpen(isOpen ? null : num);
+  }
+
+  return (
+    <div className={`item ${isOpen ? "open" : ""}`} onClick={handleToggle}>
+      <p className="number">{num < 9 ? `0${num + 1}` : num + 1}</p>
+      <p className="title">{title}</p>
+      <p className="icon">{isOpen ? "-" : "+"}</p>
+
+      {isOpen && <div className="content-box">{children}</div>}
+    </div>
+  );
+}
