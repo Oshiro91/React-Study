@@ -1,42 +1,75 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* App.css */
+/* App.css */
+body {
+  background: url('https://wallpapercat.com/w/full/8/c/2/941990-3509x2070-desktop-hd-mario-bros-wallpaper-photo.jpg') no-repeat center center fixed; /* Replace with your preferred Mario background image URL */
+  background-size: cover;
+  font-family: 'Press Start 2P', cursive; /* Pixel-style font for Super Mario look */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  text-shadow: 2px 2px 2px #000;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Other styles remain the same */
+
+input[type="number"] {
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px;
+  margin: 5px;
+  border: 3px solid #ffcc00; /* Gold outline */
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px #555;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+select {
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px;
+  border: 3px solid #00aaff; /* Blue outline */
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0px #555;
 }
 
-.card {
-  padding: 2em;
+span {
+  display: block;
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #fff;
 }
 
-.read-the-docs {
-  color: #888;
+div {
+  margin-bottom: 20px;
+}
+
+button {
+  font-family: 'Press Start 2P', cursive;
+  background: #ff5733; /* Mario's hat color */
+  color: white;
+  border: 3px solid #c70039;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px #000;
+  box-shadow: 4px 4px 0px #000;
+}
+
+button:hover {
+  background: #c70039;
+}
+
+/* Additional Super Mario-themed elements */
+.App div {
+  border: 3px dashed #00ff00; /* Green pipe border style */
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black for a retro vibe */
 }
