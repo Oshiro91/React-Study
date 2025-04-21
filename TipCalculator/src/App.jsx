@@ -66,7 +66,7 @@ function App() {
         <Select satisfaction={satisfaction} onSelect={(e) => handleFriendSatisfactionChange(e)}></Select>
       </div>
       <div>
-        <span>You pay ${bill} (${} + ${})</span>
+        <span>You pay ${bill} (${bill} + ${(mySatisfaction+friendSatisfaction)/2})</span>
       </div>
     </div>
   )
