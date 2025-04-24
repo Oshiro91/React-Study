@@ -229,3 +229,15 @@ body {
     padding-top: 170px;
   }
 }
+
+main-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.main-container > * {
+  flex: 1;
+  min-width: 0; /* Prevents flex items from overflowing */
+}
