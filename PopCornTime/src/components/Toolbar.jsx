@@ -18,9 +18,8 @@ export default function Toolbar() {
                     </button>
                 </div>
                 
-                <div className="toolbar-buttons">
-                    <button className="toolbar-button login">Login</button>
-                    <button className="toolbar-button signup">Sign Up</button>
+                <div className="search-results">
+                    {} Results for {}
                 </div>
             </div>
         </div>

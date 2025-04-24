@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import Toolbar from './components/Toolbar'
+import Toolbar from './components/toolbar'
 import './App.css'
 
 function App() {
   return (
     <div className='App'>
       <Toolbar />
-      <h1>Hello World</h1>
     </div>
   )
 }

@@ -1,41 +1,127 @@
 /* Global background styles */
 body {
   margin: 0;
-  padding-top: 60px; /* Adjust this value based on your toolbar height */
-  background-color: #2d3032; /* Dark blue background for the entire page */
-  color: #f0f0f0; /* Light text color for better contrast */
+  padding-top: 60px;
+  background-color: #1a2639;
+  color: #f0f0f0;
   font-family: Arial, sans-serif;
-  min-height: 100vh; /* Ensure the background covers the full viewport height */
+  min-height: 100vh;
 }
 
+/* Toolbar container */
 .toolbar-container {
   width: 100%;
-  background-color: #0f3460; /* Darker blue for the toolbar */
+  background-color: #0f3460;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  position: fixed; /* Fix the toolbar at the top */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensure it stays on top of other content */
+  z-index: 1000;
 }
 
+/* Main toolbar layout */
 .toolbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  gap: 20px; /* Consistent spacing between elements */
+}
+
+/* Logo and brand styling */
+.toolbar-brand-container {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto; /* Don't grow or shrink */
+}
+
+.toolbar-logo {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
 }
 
 .toolbar-brand {
   font-size: 24px;
   font-weight: bold;
-  color: #4d80e4; /* Brighter blue for the brand name */
+  color: #4d80e4;
+  white-space: nowrap;
 }
 
+/* Search bar styling */
+.toolbar-search {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Take up available space */
+  position: relative;
+  height: 36px;
+  max-width: 400px; /* Maximum width */
+}
+
+.search-input {
+  width: 100%;
+  height: 100%;
+  padding: 0 40px 0 15px;
+  border-radius: 18px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.search-button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.search-icon {
+  font-style: normal;
+  font-size: 16px;
+}
+
+.search-results {
+  position: absolute;
+  right: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(77, 128, 228, 0.2);
+  padding: 2px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.2s ease;
+}
+
+/* Buttons styling */
 .toolbar-buttons {
   display: flex;
   gap: 15px;
+  flex: 0 0 auto; /* Don't grow or shrink */
+  margin-left: auto; /* Push to the right */
 }
 
 .toolbar-button {
@@ -46,6 +132,7 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
+  white-space: nowrap;
 }
 
 .toolbar-button.login {
@@ -59,47 +146,86 @@ body {
 }
 
 .toolbar-button.signup {
-  background-color: #4d80e4; /* Blue button for signup */
+  background-color: #4d80e4;
   color: white;
 }
 
 .toolbar-button.signup:hover {
-  background-color: #3a6bc7; /* Darker blue on hover */
+  background-color: #3a6bc7;
 }
 
 /* Responsive adjustments */
+@media (max-width: 992px) {
+  .toolbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .toolbar-brand-container {
+    flex: 0 0 auto;
+  }
+  
+  .toolbar-search {
+    flex: 1 1 auto;
+    order: 0;
+    max-width: 300px;
+  }
+  
+  .toolbar-buttons {
+    flex: 0 0 auto;
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 768px) {
+  body {
+    padding-top: 120px;
+  }
+  
   .toolbar {
     flex-direction: column;
-    gap: 10px;
+    padding: 10px;
+  }
+  
+  .toolbar-brand-container {
+    margin-bottom: 10px;
+  }
+  
+  .toolbar-logo {
+    height: 32px;
+  }
+  
+  .toolbar-search {
+    width: 100%;
+    max-width: none;
+    margin: 10px 0;
   }
   
   .toolbar-buttons {
     width: 100%;
     justify-content: center;
+    gap: 10px;
+  }
+  
+  .toolbar-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .toolbar-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .toolbar-button {
+    width: 100%;
+    text-align: center;
   }
   
   body {
-    padding-top: 100px; /* Increase padding for smaller screens */
-  }
-}
-
-/* Logo styling */
-.toolbar-logo {
-  height: 40px; /* Fixed height for the logo */
-  width: auto; /* Maintain aspect ratio */
-  margin-right: 10px; /* Space between logo and brand name if they're side by side */
-}
-
-/* If you want to combine the logo with the brand name in a single container */
-.toolbar-brand-container {
-  display: flex;
-  align-items: center;
-}
-
-/* Responsive adjustments for the logo */
-@media (max-width: 768px) {
-  .toolbar-logo {
-    height: 32px; /* Slightly smaller on mobile devices */
+    padding-top: 170px;
   }
 }
