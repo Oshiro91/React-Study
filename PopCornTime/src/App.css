@@ -1,42 +1,105 @@
-#root {
-  max-width: 1280px;
+/* Global background styles */
+body {
+  margin: 0;
+  padding-top: 60px; /* Adjust this value based on your toolbar height */
+  background-color: #2d3032; /* Dark blue background for the entire page */
+  color: #f0f0f0; /* Light text color for better contrast */
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Ensure the background covers the full viewport height */
+}
+
+.toolbar-container {
+  width: 100%;
+  background-color: #0f3460; /* Darker blue for the toolbar */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: fixed; /* Fix the toolbar at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.toolbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4d80e4; /* Brighter blue for the brand name */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.toolbar-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.toolbar-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.toolbar-button.login {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.toolbar-button.login:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toolbar-button.signup {
+  background-color: #4d80e4; /* Blue button for signup */
+  color: white;
+}
+
+.toolbar-button.signup:hover {
+  background-color: #3a6bc7; /* Darker blue on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    gap: 10px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .toolbar-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  body {
+    padding-top: 100px; /* Increase padding for smaller screens */
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Logo styling */
+.toolbar-logo {
+  height: 40px; /* Fixed height for the logo */
+  width: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Space between logo and brand name if they're side by side */
+}
+
+/* If you want to combine the logo with the brand name in a single container */
+.toolbar-brand-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive adjustments for the logo */
+@media (max-width: 768px) {
+  .toolbar-logo {
+    height: 32px; /* Slightly smaller on mobile devices */
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
