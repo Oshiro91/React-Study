@@ -3,7 +3,7 @@ export default function Toolbar() {
         <div className="toolbar-container">
             <div className="toolbar">
                 <div className="toolbar-brand-container">
-                    <img src="../public/popcorn_logo.png" alt="PopCornTime Logo" className="toolbar-logo" />
+                    <img src="/popcorn_logo.png" alt="PopCornTime Logo" className="toolbar-logo" />
                     <div className="toolbar-brand">PopCornTime</div>
                 </div>
                 

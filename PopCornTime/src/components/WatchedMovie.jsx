@@ -10,6 +10,11 @@ export default function WatchedMovie({ watchedMovieList, selectedMovieData }) {
             onClick={() => handleOnClick(movie.imdbID)}>
                 <img src={movie.Poster} alt={`${movie.Title} poster`} />
                 <h3>{movie.Title}</h3>
+                <h4>OVERALL RATING</h4>
+                <input type="range" min="1" max="10" value={movie.imdbRating} /> <span>{movie.imdbRating} 🌟</span>
+                <h4>Your Rating</h4>
+                <input type="range" min="1" max="10" value={movie.userRating} /> <span>{movie.userRating} 🌟</span>
+                <h4>Watched: {movie.runtime} minutes</h4>
             </li>)}
         </ul>
     )
