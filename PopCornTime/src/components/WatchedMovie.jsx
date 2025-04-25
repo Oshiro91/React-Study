@@ -20,7 +20,7 @@ export default function WatchedMovie({ watchedMovieList, selectedMovieData }) {
                 <img src={movie.Poster} alt={`${movie.Title} poster`} />
                 <h3>{movie.Title}</h3>
                 <h4>OVERALL RATING</h4>
-                <input type="range" min="1" max="10" value={movie.imdbRating} onChange={()=>handleOnChange} /> <span>{movie.imdbRating} 🌟</span>
+                <input type="range" min="1" max="10" value={movie.imdbRating} onChange={handleOnChange} /> <span>{movie.imdbRating} 🌟</span>
                 <h4>Your Rating</h4>
                 <input type="range" min="1" max="10" value={movie.userRating} /> <span>{movie.userRating} 🌟</span>
                 <h4>Watched: {movie.runtime} minutes</h4>
