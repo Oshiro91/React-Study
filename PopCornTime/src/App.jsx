@@ -1,7 +1,4 @@
 import { useState } from 'react'
-import Toolbar from './components/toolbar'
-import MovieList from './components/MovieList'
-import WatchedMoviesList from './components/WatchedMoviesList'
 import './App.css'
 
 const tempMovieData = [
@@ -51,18 +48,9 @@ const tempWatchedData = [
   },
 ];
 function App() {
-  const [selMovies, setSelMovies] = useState(null);
-  function onselectMovie(id) {
-    const selectedMovieData = tempMovieData.find(movie => movie.imdbID === id)
-    setSelMovies(selectedMovieData);
-  }
-  return (
-    <div className='App'>
-      <Toolbar />
-      <div className="main-container">
-        <MovieList movies={tempMovieData} onSelectMovie={onselectMovie} />
-        <WatchedMoviesList WatchedMoviesList={tempWatchedData} selectedMovieData={selMovies} />
-      </div>
+  return(
+    <div>
+
     </div>
   )
 }
