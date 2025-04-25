@@ -1,0 +1,110 @@
+/* Navbar styling */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #e0f7fa; /* Light blue background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* High z-index to stay on top */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo span {
+  font-size: 2rem;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.search {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 30%;
+  font-size: 1rem;
+}
+
+.num-results {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Main content container to prevent content from being hidden behind navbar */
+.main-content {
+  margin-top: 80px; /* Adjust based on navbar height */
+  position: relative;
+  z-index: 1; /* Lower than navbar but still positioned */
+}
+
+/* Button styling */
+button {
+  position: relative; /* Ensure buttons have their own stacking context */
+  z-index: 2; /* Higher than regular content but lower than navbar */
+}
+
+/* List Box Components Styling */
+.box {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 7rem 0;
+  overflow: hidden;
+  position: relative; /* Create stacking context */
+}
+
+.list-box-header {
+  background-color: #e0f7fa;
+  padding: 1rem;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+.list-box-content {
+  padding: 1rem;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  background-color: #f5f5f5;
+}
+
+.list-item-button {
+  background-color: #e0f7fa;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  position: relative; /* Ensure proper stacking */
+  z-index: 5; /* Higher than other content */
+}
+
+.list-item-button:hover {
+  background-color: #b3e5fc;
+}

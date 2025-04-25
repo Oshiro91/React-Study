@@ -47,10 +47,78 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
-function App() {
-  return(
-    <div>
 
+function Navbar() {
+  return (
+    <nav className="nav-bar">
+      <Logo/>
+      <Searchbar />
+      <NumResults movies={tempMovieData}/>
+    </nav>
+  );
+}
+
+function Searchbar() {
+  const [query, setQuery] = useState("");
+  return(
+    <input
+      className="search"
+      type="text"
+      placeholder="Search movies..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      />
+  )
+}
+
+function Logo () {
+  return (
+    <div className="logo">
+      <span role="img">🍿</span>
+      <h1>usePopcorn</h1>
+    </div>
+  );
+}
+
+function NumResults({movies}) {
+  return (
+    <p className="num-results">
+      Found <strong>{movies.length}</strong> results
+    </p>
+  );
+}
+
+function ListBox () {
+  const [isOppen, setIsopen] = useState(true)
+  return (
+    <div className='box'>
+      <button className='btn-toggle' onClick={()=>setIsopen(!isOppen)}>{isOppen ? '+' : '-'}</button>
+      {isOppen && (
+        <ul className='list'>
+          {tempMovieData.map((movie) => (
+            <li key={movie.imdbID}>
+              <img src={movie.Poster} alt={`${movie.Title} Poster`} />
+              <h3>{movie.Title}</h3>
+              <div>
+                <p>	
+                  <span>📅</span>
+                  <span>{movie.Year}</span>
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+function App() {
+  return (
+    <div className="App">
+      <Navbar />
+      <main className="main-content">
+        <ListBox/>
+      </main>
     </div>
   )
 }
