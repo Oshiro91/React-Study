@@ -16,6 +16,13 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+main {
+  height: 100%;
+  width: 100%;
+  background-color: #050f3b;
+  background: #050f3b;
+}
+
 #root {
   height: 100%;
   width: 100%;
@@ -68,4 +75,26 @@ body {
 .num-results {
   color: #333;
   font-weight: 500;
+}
+
+.summary {
+  margin-top: 1rem;
+  color: #ffffff;
+}
+
+.list {
+  color: #ffffff;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-toggle {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
