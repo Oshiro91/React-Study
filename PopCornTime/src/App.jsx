@@ -149,7 +149,7 @@ function Searchbar() {
       onChange={(e) => setQuery(e.target.value)}
     />
   )
-} 
+}
 
 function Logo() {
   return (
