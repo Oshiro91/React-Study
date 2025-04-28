@@ -111,7 +111,7 @@ const tempWatchedData = [
     Title: "Rocky",
     Year: "1976",
     Poster:
-      "https://m.media-amazon.com/images/M/MV5BMTY5MDMzODU1OV5BMl5BanBnXkFtZTgwMjg0MjM0NjE@._V1_SX300.jpg",
+      "https://m.media-amazon.com/images/I/61qNMpgcPfL._AC_UF894,1000_QL80_.jpg",
     runtime: 120,
     imdbRating: 8.1,
     userRating: 9,
@@ -149,7 +149,7 @@ function Searchbar() {
       onChange={(e) => setQuery(e.target.value)}
     />
   )
-}
+} 
 
 function Logo() {
   return (
