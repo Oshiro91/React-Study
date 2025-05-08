@@ -182,13 +182,13 @@ function NumResults({ movies }) {
   );
 }
 
-function ListBox({ movies }) {
+function Box({ children }) {
   const [isOppen, setIsopen] = useState(true)
   return (
     <div className='box'>
       <button className='btn-toggle' onClick={() => setIsopen(!isOppen)}>{isOppen ? '-' : '+'}</button>
       {isOppen && (
-        <MovieList movies={movies} />
+        children
       )}
     </div>
   )
@@ -219,42 +219,39 @@ function Movies({ movie }) {
   )
 }
 
-function WatchedBox() {
+function WatchedSummary({ watched }) {
   function avg(arr) {
     return arr.reduce((acc, cur) => acc + cur, 0) / arr.length
   }
-  const [isOppen2, setIsopen2] = useState(true)
-  const [watched, setWatched] = useState(tempWatchedData)
   const avgImdbRating = avg(watched.map(movie => movie.imdbRating))
   const avgUserRating = avg(watched.map(movie => movie.userRating))
   const avgRuntime = avg(watched.map(movie => movie.runtime))
-
+  return (
+    <div className='summary'>
+      <h2>Movies you watched
+      </h2>
+      <div>
+        <p>
+          <span>🎬</span>
+          <span>{watched.length}</span>
+          <span>🌟</span>
+          <span>{avgImdbRating}</span>
+          <span>🌠</span>
+          <span>{avgUserRating}</span>
+        </p>
+      </div>
+    </div>
+  )
+}
+function WatchedBox() {
+  const [isOppen2, setIsopen2] = useState(true)
+  const [watched, setWatched] = useState(tempWatchedData)
 
   return (
     <div className='box'>
-      <div className='summary'>
-        <h2>Movies you watched
-          <button
-            className='btn-toggle'
-            onClick={() => setIsopen2(!isOppen2)}>
-            {isOppen2 ? '-' : '+'}
-          </button>
-        </h2>
-        <div>
-          <p>
-            <span>🎬</span>
-            <span>{watched.length}</span>
-            <span>🌟</span>
-            <span>{avgImdbRating}</span>
-            <span>🌠</span>
-            <span>{avgUserRating}</span>
-          </p>
-        </div>
-      </div>
+      <WatchedSummary watched={watched} />
       {isOppen2 && (
-        <>
-          <WatchedList />
-        </>
+        <WatchedList />
       )}
     </div>
   )
@@ -309,8 +306,13 @@ function App() {
         <NumResults movies={movies} />
       </Navbar>
       <Main>
-        <ListBox movies={movies} />
-        <WatchedBox />
+        <Box>
+          <MovieList movies={movies} />
+        </Box>
+        <Box>
+          <WatchedSummary watched={tempWatchedData} />
+          <WatchedList />
+        </Box>
       </Main>
     </div>
   )
