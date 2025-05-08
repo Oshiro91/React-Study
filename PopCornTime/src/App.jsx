@@ -128,17 +128,33 @@ const tempWatchedData = [
   }
 ];
 
-function Navbar() {
+function Navbar({ movies, setMovies }) {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Searchbar />
-      <NumResults movies={tempMovieData} />
+      <Searchbar movies={movies} setMovies={setMovies} />
+      <NumResults movies={movies} />
     </nav>
   );
 }
 
-function Searchbar() {
+function Searchbar({ movies, setMovies }) {
+  function handleSearch(e) {
+    console.log(e.target.value)
+    if (e.target.value === "") {
+      setQuery(e.target.value)
+      setMovies(tempMovieData)
+    }
+    else {
+      setQuery(e.target.value)
+      filterMovies(e.target.value)
+    }
+  }
+  function filterMovies(query) {
+    const filteredMovies = movies.filter((movie) => movie.Title.toLowerCase().includes(query.toLowerCase()))
+    setMovies(filteredMovies)
+   }
+
   const [query, setQuery] = useState("");
   return (
     <input
@@ -146,7 +162,7 @@ function Searchbar() {
       type="text"
       placeholder="Search movies..."
       value={query}
-      onChange={(e) => setQuery(e.target.value)}
+      onChange={handleSearch}
     />
   )
 }
@@ -168,7 +184,7 @@ function NumResults({ movies }) {
   );
 }
 
-function ListBox({movies}) {
+function ListBox({ movies }) {
   const [isOppen, setIsopen] = useState(true)
   return (
     <div className='box'>
@@ -180,7 +196,7 @@ function ListBox({movies}) {
   )
 }
 
-function MovieList({movies}) {
+function MovieList({ movies }) {
   return (
     <ul className='list'>
       {movies.map((movie) => (
@@ -276,7 +292,7 @@ function WatchedList() {
 
   )
 }
-function Main({movies}) {
+function Main({ movies }) {
   return (
     <main className='main'>
       <ListBox movies={movies} />
@@ -284,13 +300,13 @@ function Main({movies}) {
     </main>
   )
 }
-function App() {  
+function App() {
   const [movies, setMovies] = useState(tempMovieData)
 
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar movies={movies} setMovies={setMovies} />
       <Main movies={movies} />
     </div>
   )
