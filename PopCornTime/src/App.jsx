@@ -128,12 +128,10 @@ const tempWatchedData = [
   }
 ];
 
-function Navbar({ movies, setMovies }) {
+function Navbar({ children }) {
   return (
     <nav className="nav-bar">
-      <Logo />
-      <Searchbar movies={movies} setMovies={setMovies} />
-      <NumResults movies={movies} />
+      {children}
     </nav>
   );
 }
@@ -153,7 +151,7 @@ function Searchbar({ movies, setMovies }) {
   function filterMovies(query) {
     const filteredMovies = movies.filter((movie) => movie.Title.toLowerCase().includes(query.toLowerCase()))
     setMovies(filteredMovies)
-   }
+  }
 
   const [query, setQuery] = useState("");
   return (
@@ -292,11 +290,10 @@ function WatchedList() {
 
   )
 }
-function Main({ movies }) {
+function Main({ children }) {
   return (
     <main className='main'>
-      <ListBox movies={movies} />
-      <WatchedBox />
+      {children}
     </main>
   )
 }
@@ -306,8 +303,15 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar movies={movies} setMovies={setMovies} />
-      <Main movies={movies} />
+      <Navbar>
+        <Logo />
+        <Searchbar movies={movies} setMovies={setMovies} />
+        <NumResults movies={movies} />
+      </Navbar>
+      <Main>
+        <ListBox movies={movies} />
+        <WatchedBox />
+      </Main>
     </div>
   )
 }
