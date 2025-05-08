@@ -168,20 +168,19 @@ function NumResults({ movies }) {
   );
 }
 
-function ListBox() {
+function ListBox({movies}) {
   const [isOppen, setIsopen] = useState(true)
   return (
     <div className='box'>
       <button className='btn-toggle' onClick={() => setIsopen(!isOppen)}>{isOppen ? '-' : '+'}</button>
       {isOppen && (
-        <MovieList />
+        <MovieList movies={movies} />
       )}
     </div>
   )
 }
 
-function MovieList() {
-  const [movies, setMovies] = useState(tempMovieData)
+function MovieList({movies}) {
   return (
     <ul className='list'>
       {movies.map((movie) => (
@@ -277,19 +276,22 @@ function WatchedList() {
 
   )
 }
-function Main() {
+function Main({movies}) {
   return (
     <main className='main'>
-      <ListBox />
+      <ListBox movies={movies} />
       <WatchedBox />
     </main>
   )
 }
-function App() {
+function App() {  
+  const [movies, setMovies] = useState(tempMovieData)
+
+
   return (
     <div className="App">
       <Navbar />
-      <Main />
+      <Main movies={movies} />
     </div>
   )
 }
