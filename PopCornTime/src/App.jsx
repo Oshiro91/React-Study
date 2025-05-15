@@ -300,7 +300,7 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <Navbar>
         <Logo />
         <Searchbar movies={movies} setMovies={setMovies} />
@@ -311,7 +311,7 @@ function App() {
         <Box>
           <MovieList movies={movies} />
         </Box>
-        
+
         <Box>
           <WatchedSummary watched={tempWatchedData} />
           <WatchedList />
