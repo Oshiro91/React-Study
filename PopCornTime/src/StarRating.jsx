@@ -11,14 +11,6 @@ const starContainerStyle = {
     gap: '0px',
 }
 
-StarRating.propTypes = {
-    maxRating: PropTypes.number,
-    color: PropTypes.string,
-    size: PropTypes.number,
-    messages: PropTypes.array,
-    defaultRating: PropTypes.number,
-    onSetRating: PropTypes.func,
-}
 const textStyle = {
     lineHeight: '1',
     margin: '0',
@@ -29,6 +21,15 @@ const starStyle = {
     height: '24px',
     display: 'block',
     cursorsor: 'pointer',
+}
+
+StarRating.propTypes = {
+    maxRating: PropTypes.number,
+    color: PropTypes.string,
+    size: PropTypes.number,
+    messages: PropTypes.array,
+    defaultRating: PropTypes.number,
+    onSetRating: PropTypes.func,
 }
 export default function StarRating({
     maxRating = 5,
