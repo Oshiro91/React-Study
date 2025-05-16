@@ -24,8 +24,9 @@ const starStyle = {
 export default function StarRating({
     maxRating = 5,
     color = '#fcc419',
+    defaultRating = 0,
     size = 48, }) {
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(defaultRating);
     const [tempRating, setTempRating] = useState(0);
 
     function handleRating(rating) {
