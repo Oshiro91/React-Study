@@ -8,7 +8,7 @@ function Form({ enterpriseSchema, onSuccess, tableName }) {
   // Create an empty form template based on the schema
   const getEmptyTemplate = () => {
     if (!enterpriseSchema) return {};
-    
+
     const template = {};
     Object.keys(enterpriseSchema).forEach(key => {
       // Set default values based on data type
@@ -27,7 +27,7 @@ function Form({ enterpriseSchema, onSuccess, tableName }) {
   };
 
   // Handle form submission
-   async function onSubmit (data) {
+  async function onSubmit(data) {
     console.log(data);
     try {
       await axios.post(`https://agdznbhmbteodywfnuqq.supabase.co/rest/v1/${tableName}`, data, {
@@ -46,9 +46,9 @@ function Form({ enterpriseSchema, onSuccess, tableName }) {
       alert('Error submitting form: ' + error.message);
     }
   };
-  
+
   if (!enterpriseSchema) return null;
-  
+
   return (
     <div className="form-container">
       <h2>Add New Enterprise</h2>
@@ -73,7 +73,7 @@ function Form({ enterpriseSchema, onSuccess, tableName }) {
 function FormField({ name, register, error, type }) {
   // Skip id field or make it readonly if it's an auto-increment field
   const isIdField = name.toLowerCase() === 'id';
-  
+
   const getInputType = () => {
     if (type === 'number') return 'number';
     if (type === 'boolean') return 'checkbox';
@@ -81,7 +81,7 @@ function FormField({ name, register, error, type }) {
   };
 
   return (
-    
+    isIdField ? null : 
     <div className="form-field">
       <label htmlFor={name}>{name}</label>
       {type === 'boolean' ? (
@@ -95,7 +95,7 @@ function FormField({ name, register, error, type }) {
         <input
           id={name}
           type={getInputType()}
-          {...register(name, { 
+          {...register(name, {
             required: !isIdField ? `${name} is required` : false,
             valueAsNumber: type === 'number'
           })}
@@ -104,6 +104,7 @@ function FormField({ name, register, error, type }) {
       )}
       {error && <p className="error-message">{error.message}</p>}
     </div>
+
   );
 }
 

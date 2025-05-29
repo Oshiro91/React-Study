@@ -2,6 +2,7 @@ import {useState} from 'react'
 import './App.css'
 import Empresas from './pages/empresas'
 import Variaveis from './pages/Variaveis'
+import Valores from './pages/Valores'
 function App() {
   const [currentPage, setCurrentPage] = useState('empresas'); // Default page is KPI form
 
@@ -20,7 +21,7 @@ function App() {
       case 'variaveis':
         return <Variaveis  />;
       case 'valores':
-        return <Reports />;
+        return <Valores />;
       default:
         return <div>Page not found</div>;
     }
