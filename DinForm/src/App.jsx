@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import './App.css'
 import Empresas from './pages/empresas'
+import Variaveis from './pages/Variaveis'
 function App() {
   const [kpiData, setKpiData] = useState({});
-  const [currentPage, setCurrentPage] = useState('kpi'); // Default page is KPI form
+  const [currentPage, setCurrentPage] = useState('empresas'); // Default page is KPI form
 
   // Function to fetch data from Supabase
   const fetchDataFromSupabase = async () => {
@@ -38,7 +39,7 @@ function App() {
       case 'empresas':
         return <Empresas kpiData={kpiData} />;
       case 'variaveis':
-        return <Dashboard />;
+        return <Variaveis kpiData={kpiData} />;
       case 'valores':
         return <Reports />;
       case 'settings':

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './empresas.css';
 
-function Empresas({ kpiData }) {
+function Variaveis({  }) {
   const [enterprises, setEnterprises] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ function Empresas({ kpiData }) {
   const fetchEnterprises = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('https://agdznbhmbteodywfnuqq.supabase.co/rest/v1/ENTERPRISES', {
+      const response = await axios.get('https://agdznbhmbteodywfnuqq.supabase.co/rest/v1/VARIABLES', {
         headers: {
           'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnZHpuYmhtYnRlb2R5d2ZudXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5NTQ0MDMsImV4cCI6MjA1NzUzMDQwM30.m7od2CmAcpTzB1mnR3yk7LcvHvWk4n687Jqsudxy43s`,
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnZHpuYmhtYnRlb2R5d2ZudXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5NTQ0MDMsImV4cCI6MjA1NzUzMDQwM30.m7od2CmAcpTzB1mnR3yk7LcvHvWk4n687Jqsudxy43s',
@@ -33,13 +33,13 @@ function Empresas({ kpiData }) {
 
   return (
     <div className="empresas-container">
-      <h1 className="empresas-title">Empresas</h1>
-      {enterprises.length > 0 && (
-        <Form enterpriseSchema={enterprises[0]} onSuccess={fetchEnterprises} />
+      <h1 className="empresas-title">Variáveis</h1>
+      {Object.keys(enterprises).length > 0 && (
+        <Form enterprises={enterprises} onSuccess={fetchEnterprises} />
       )}
 
       <div className="enterprises-table-container">
-        <h2 className="enterprises-table-title">Registered Enterprises</h2>
+        <h2 className="enterprises-table-title">Variáveis Registradas</h2>
         {loading ? (
           <p className="loading-message">Loading data...</p>
         ) : error ? (
@@ -54,22 +54,11 @@ function Empresas({ kpiData }) {
 
 function EnterpriseTable({ enterprises }) {
   if (enterprises.length === 0) {
-    return <p className="no-data-message">No enterprises found.</p>;
+    return <p className="no-data-message">No variables found.</p>;
   }
 
   // Get column names from the first record
   const columns = enterprises.length > 0 ? Object.keys(enterprises[0]) : [];
-
-  // Function to format cell values based on their type
-  const formatCellValue = (value) => {
-    if (value === null || value === undefined) {
-      return '';
-    }
-    if (typeof value === 'boolean') {
-      return value ? '✅' : '❌';
-    }
-    return value.toString();
-  };
 
   return (
     <div className="table-responsive">
@@ -85,9 +74,7 @@ function EnterpriseTable({ enterprises }) {
           {enterprises.map((enterprise, index) => (
             <tr key={index}>
               {columns.map(column => (
-                <td key={`${index}-${column}`}>
-                  {formatCellValue(enterprise[column.toString()])}
-                </td>
+                <td key={`${index}-${column}`}>{enterprise[column]}</td>
               ))}
             </tr>
           ))}
@@ -97,35 +84,16 @@ function EnterpriseTable({ enterprises }) {
   );
 }
 
-function Form({ enterpriseSchema, onSuccess }) {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm();
-
-  // Create an empty form template based on the schema
-  const getEmptyTemplate = () => {
-    if (!enterpriseSchema) return {};
-    
-    const template = {};
-    Object.keys(enterpriseSchema).forEach(key => {
-      // Set default values based on data type
-      const type = typeof enterpriseSchema[key];
-      if (type === 'number') {
-        template[key] = 0;
-      } else if (type === 'boolean') {
-        template[key] = false;
-      } else if (type === 'string') {
-        template[key] = '';
-      } else {
-        template[key] = null;
-      }
-    });
-    return template;
-  };
+function Form({ enterprises, onSuccess }) {
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm({
+    defaultValues: enterprises
+  });
 
   // Handle form submission
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      await axios.post('https://agdznbhmbteodywfnuqq.supabase.co/rest/v1/ENTERPRISES', data, {
+      await axios.post('https://agdznbhmbteodywfnuqq.supabase.co/rest/v1/VARIABLES', data, {
         headers: {
           'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnZHpuYmhtYnRlb2R5d2ZudXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5NTQ0MDMsImV4cCI6MjA1NzUzMDQwM30.m7od2CmAcpTzB1mnR3yk7LcvHvWk4n687Jqsudxy43s`,
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnZHpuYmhtYnRlb2R5d2ZudXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5NTQ0MDMsImV4cCI6MjA1NzUzMDQwM30.m7od2CmAcpTzB1mnR3yk7LcvHvWk4n687Jqsudxy43s',
@@ -142,63 +110,41 @@ function Form({ enterpriseSchema, onSuccess }) {
     }
   };
   
-  if (!enterpriseSchema) return null;
-  
   return (
-    <div className="form-container">
-      <h2>Add New Enterprise</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="kpi-form">
-        {Object.keys(enterpriseSchema).map((key) => (
-          <FormField
-            key={key}
-            name={key}
-            register={register}
-            error={errors[key]}
-            type={typeof enterpriseSchema[key]}
-          />
-        ))}
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit'}
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="kpi-form">
+      {Object.keys(enterprises).map((key) => (
+        <FormField
+          key={key}
+          name={key}
+          defaultValue={enterprises[key]}
+          register={register}
+          error={errors[key]}
+          type={typeof enterprises[key]}
+        />
+      ))}
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? 'Submitting...' : 'Submit'}
+      </button>
+    </form>
   );
 }
 
-function FormField({ name, register, error, type }) {
-  // Skip id field or make it readonly if it's an auto-increment field
-  const isIdField = name.toLowerCase() === 'id';
-  
-  const getInputType = () => {
-    if (type === 'number') return 'number';
-    if (type === 'boolean') return 'checkbox';
-    return 'text';
-  };
-
+function FormField({ name, defaultValue, register, error, type }) {
   return (
     <div className="form-field">
       <label htmlFor={name}>{name}</label>
-      {type === 'boolean' ? (
-        <input
-          id={name}
-          type="checkbox"
-          {...register(name)}
-          disabled={isIdField}
-        />
-      ) : (
-        <input
-          id={name}
-          type={getInputType()}
-          {...register(name, { 
-            required: !isIdField ? `${name} is required` : false,
-            valueAsNumber: type === 'number'
-          })}
-          disabled={isIdField}
-        />
-      )}
+      <input
+        id={name}
+        type={type === 'number' ? 'number' : 'text'}
+        {...register(name, { 
+          required: `${name} is required`,
+          valueAsNumber: type === 'number'
+        })}
+        defaultValue={defaultValue}
+      />
       {error && <p className="error-message">{error.message}</p>}
     </div>
   );
 }
 
-export default Empresas;
+export default Variaveis;
