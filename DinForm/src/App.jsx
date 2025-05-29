@@ -67,9 +67,6 @@ function Navbar({ currentPage, onNavigate }) {
 
 // Placeholder components for other pages
 
-function Reports() {
-  return <div className="page-container"><h1>Valores</h1><h2>ERROR 404 🤓🤓</h2></div>;
-}
 
 
 export default App
