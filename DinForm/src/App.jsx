@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import './App.css'
-import Empresas from './Empresas'
-
+import Empresas from './pages/empresas'
 function App() {
   const [kpiData, setKpiData] = useState({});
   const [currentPage, setCurrentPage] = useState('kpi'); // Default page is KPI form
