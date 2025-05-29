@@ -1,9 +1,8 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import './Form.css';
 
 
-function Form({ enterpriseSchema, onSuccess }) {
+function Form({ enterpriseSchema, onSuccess, tableName }) {
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm();
 
   // Create an empty form template based on the schema
@@ -28,10 +27,10 @@ function Form({ enterpriseSchema, onSuccess }) {
   };
 
   // Handle form submission
-  const onSubmit = async (data) => {
+   async function onSubmit (data) {
     console.log(data);
     try {
-      await axios.post('https://agdznbhmbteodywfnuqq.supabase.co/rest/v1/ENTERPRISES', data, {
+      await axios.post(`https://agdznbhmbteodywfnuqq.supabase.co/rest/v1/${tableName}`, data, {
         headers: {
           'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnZHpuYmhtYnRlb2R5d2ZudXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5NTQ0MDMsImV4cCI6MjA1NzUzMDQwM30.m7od2CmAcpTzB1mnR3yk7LcvHvWk4n687Jqsudxy43s`,
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnZHpuYmhtYnRlb2R5d2ZudXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE5NTQ0MDMsImV4cCI6MjA1NzUzMDQwM30.m7od2CmAcpTzB1mnR3yk7LcvHvWk4n687Jqsudxy43s',
@@ -82,6 +81,7 @@ function FormField({ name, register, error, type }) {
   };
 
   return (
+    
     <div className="form-field">
       <label htmlFor={name}>{name}</label>
       {type === 'boolean' ? (
